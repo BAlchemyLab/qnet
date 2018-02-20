@@ -1,3 +1,8 @@
+# Binaries
+QKD_emulator/qkdemu
+keyworker/keyworker
+qcrypt/qcrypt
+
 # Prerequisites
 *.d
 
