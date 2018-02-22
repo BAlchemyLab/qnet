@@ -1,3 +1,6 @@
+# Keyworker's databases
+*/db/
+
 # Binaries
 QKD_emulator/qkdemu
 keyworker/keyworker
