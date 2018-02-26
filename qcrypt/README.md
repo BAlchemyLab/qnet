@@ -1,122 +1,110 @@
-Сборка:
+Build:
 =======
 `make qcrypt`
 
-Дополнительно требуется:
+Requirements:
 =======
 
-Прокси на порту 3128 (на машине, где установлен декодер)
-
-tcpmux - находится в директории выше - для мультиплексирования (`make tcpmux`)
+Proxy server on port 3128 (on machine with decoder)
 
 
-Параметры запуска:
+Parameters:
 =======
 
-`./qcrypt -h` - справка
+`./qcrypt -h` - help
 
 
 `./qcrypt [config.cfg]`
 
-- config.cfg - файл конфигурации (можно опустить)
+- config.cfg - config file
 
 
 
-Схема запуска:
+Starting process:
 =======
 
 
-Прокси (squid на порту 3128)
+Proxy server (squid on port 3128)
 
 
-tcpdemux (слушает подключения на порту 3333, демультиплексирует, перенаправляет на 127.0.0.1:3128):
-
-`./tcpmux —demux 3333 127.0.0.1:3128`
-
-
-Декодер (слушает подключения на порту 2222, декодирует и кодирует обратный, перенаправляет на 127.0.0.1:3333, канал управления на порту 77):
+Decoder (wait for connections on port 2222, send information to 127.0.0.1:7777, control channel on port 77):
 
 `./qcrypt decoder.cfg`
 
 
-Кодер (слушает подключения на порту 7777, кодирует и декодирует обратный, перенаправляет на 127.0.0.1:2222, канал управления на порту 78):
+Coder (wait for connections on port 7777, send information to 127.0.0.1:3128, control channel on port 78):
 
 `./qcrypt coder.cfg`
 
 
-tcpmux (слушает подключения на порту 8888, мультиплексирует, перенаправляет на 127.0.0.1:7777):
-
-`./tcpmux 8888 127.0.0.1:7777`
+Client (Web browser 127.0.0.1:2222)
 
 
-Клиент (веб-браузер, прокси настроен на 127.0.0.1:8888)
-
-
-Управление:
+Control:
 =======
-Подключение на порт управления:
+Connection to control channel:
 
 `nc 127.0.0.1 77`
 
 
-Команды: 
+Commands: 
 
-r - перечитывание ключей (кроме mode=0)
+r - reread keys (against mode=0)
 
-quit - завершение работы
+quit
 
 
-Для пересылки ключа по cUrl (при mode=0):
+For keys send by cUrl (with mode=0):
 =======
 
-Собрать проект в директории выше KeyByCURL и запустить до передачи данных (включения tcpmux)
+Use programm KQD (Quantum Key Distribution) HW software emulator.
 
-`./KeyByCURL.out 127.0.0.1:78 127.0.0.1:77`
+`./qkdemu 127.0.0.1:78 127.0.0.1:77`
 
-Cfg-файлы
+Cfg-files
 =======
 
-// РЕЖИМ ЧТЕНИЯ КЛЮЧЕЙ (int) :
+// mode (int) :
 
-//	0 - чтение данных по curl запросу (./KeyByCURL.out)
+//	0 - read by curl request (./qkdemu)
 
-//	1 - чтение данных посимвольно
+//	1 - read symbol by symbol
 
 //	2 - plug&play
 
 `mode = 1;`
 
-// РЕЖИМ РАБОТЫ (int) :
+// coder (int) :
 
-//	0 - Декодер
+//	0 - Decoder
 
-//	1 - Кодер
+//	1 - Coder
 
 `coder = 1;`
 
-//port (int) - слушающий порт
+//port (int) - Listening port
 
 `port = 7777;`
 
-//IP (string) - IP подключения
+//IP (string) - IP connect to
 
 `ip = "127.0.0.1";`
 
-//portDest (int) - порт подключения
+//portDest (int) - Connect to port
 
 `portDest = 2222;`
 
-//portCtrl (int) - порт контроля
+//portCtrl (int) - Control port
 
 `portCtrl = 78;`
 
-//if mode == 1 - ДИРЕКТОРИЯ КЛЮЧЕЙ И ОКОНЧАНЕ ФАЙЛА
+//if mode == 1 - keys directory and file ending mask
 
 `keyDir = "/opt/qcrypt/share/qbcrypt";`
 
 `keyTail = "_Bob.key";`
 
-//if mode == 2 - ФАЙЛ КЛЮЧЕЙ
+//if mode == 2 - keyfile
 
 `keyFile = "/opt/qcrypt/share/qacrypt/Bob_Code.txt";`
 
