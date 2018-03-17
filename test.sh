@@ -1,5 +1,15 @@
 #!/bin/sh
 
+KEYWORKER="http://localhost:55554"
+
+curl -s -X DELETE -H "Content-Type: application/json" http://localhost:5000/keyworker
+curl -s -X DELETE -H "Content-Type: application/json" http://localhost:5001/keyworker
+
+echo curl -s -X POST -H "Content-Type: application/json" -d '{ "keyworkers": [{"address":"'$KEYWORKER'","id":0}] }' http://localhost:5000/keyworker/register
+curl -s -X POST -H "Content-Type: application/json" -d '{ "keyworkers": [{"address":"'$KEYWORKER'","id":0}] }' http://localhost:5000/keyworker/register
+echo curl -s -X POST -H "Content-Type: application/json" -d '{ "keyworkers": [{"address":"'$KEYWORKER'","id":0}] }' http://localhost:5001/keyworker/register
+curl -s -X POST -H "Content-Type: application/json" -d '{ "keyworkers": [{"address":"'$KEYWORKER'","id":0}] }' http://localhost:5001/keyworker/register
+
 qcrypt/qcrypt qcrypt/coder0.cfg > /tmp/coder.log 2>&1 &
 qcrypt/qcrypt qcrypt/decoder0.cfg > /tmp/decoder.log 2>&1 &
 
@@ -13,7 +23,7 @@ read
 echo Connection without coding
 
 curl -s -X POST -H "Content-Type: application/json" -d '{
- "nodes": ["http://localhost:5001"]
+ "nodes": [{"address":"http://localhost:5001","keyworker_id":0}]
 }' "http://localhost:5000/nodes/register"
 
 curl http://localhost:5000/nodes/resolve
@@ -23,7 +33,7 @@ read
 echo Connection with coding
 curl -s -X DELETE -H "Content-Type: application/json" http://localhost:5000/nodes
 curl -s -X POST -H "Content-Type: application/json" -d '{
- "nodes": ["http://localhost:7777"]
+ "nodes": [{"address":"http://localhost:7777","keyworker_id":0}]
 }' "http://localhost:5000/nodes/register"
 
 curl http://localhost:5000/nodes/resolve

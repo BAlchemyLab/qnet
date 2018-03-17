@@ -22,13 +22,18 @@ pipenv run python blockchain.py -p 5000 -d quant.db -v quant
 pipenv run python blockchain.py -p 5001 -d quant.db -v quant
 ```
 
-2) Look at tcpdump's log files for encrypted (qkd) and unencrypted (raw) channels:
+2) Run instance of [keyworker] (https://github.com/BAlchemyLab/qnet/tree/master/keyworker) on port 55554:
+```
+./keyworker -p 55554
+```
+
+3) Look at tcpdump's log files for encrypted (qkd) and unencrypted (raw) channels:
 ```
 tail -F /tmp/tcpdump.qkd.log
 tail -F /tmp/tcpdump.raw.log
 ```
 
-3) Run test script and press ENTER for sending queries through unencrypted and encrypted channels:
+4) Run test script and press ENTER for sending queries through unencrypted and encrypted channels:
 ```
 ./test.sh
 Press ENTER
