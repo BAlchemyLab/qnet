@@ -179,8 +179,8 @@ char *progname;
 void usage(void) {
     fprintf(stderr, "Usage:\n");
     fprintf(stderr, "%s -i <ifacename> [-s|-c <serverIP>] [-p <port>] [-k <port>] [-u|-a] [-d]\n", progname);
-    fprintf(stderr, "%s ./ctapudp -s 0.0.0.0 -p 3443 -q 127.0.0.1 -r 55554 -i udp0 -e 100 -a 1-d 1\n", progname);
-    fprintf(stderr, "%s ./ctapudp -c 0.0.0.0 -p 0 -q 192.168.1.199 -r 55554 -t 192.168.1.199 -k 3443 -i udp0 -e 100 -a 1 -d 1\n", progname);
+    fprintf(stderr, "%s -s 0.0.0.0 -p 3443 -q 127.0.0.1 -r 55554 -i udp0 -e 100 -a 1-d 1\n", progname);
+    fprintf(stderr, "%s -c 0.0.0.0 -p 0 -q 192.168.1.199 -r 55554 -t 192.168.1.199 -k 3443 -i udp0 -e 100 -a 1 -d 1\n", progname);
 
 
     fprintf(stderr, "%s -h\n", progname);
