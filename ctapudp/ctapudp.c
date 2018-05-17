@@ -21,7 +21,7 @@
 
 #include <sys/select.h>
 
-#include <mcrypt.h>
+//#include <mcrypt.h>
 #include <openssl/evp.h>
 #include <openssl/aes.h>
 #include <openssl/err.h>
@@ -208,7 +208,7 @@ int blocksize = 0;
 int aes = 0;
 int gzip = 0;
 
-MCRYPT td;
+//MCRYPT td;
 
 void intHandler(int dummy) {
     printf("\nEXIT\n");
@@ -216,10 +216,10 @@ void intHandler(int dummy) {
         curl_clear();
         EVP_cleanup();
     }
-    if (blocksize) {
-        mcrypt_generic_deinit(td);
-        mcrypt_module_close(td);
-    }
+    //if (blocksize) {
+        //mcrypt_generic_deinit(td);
+        //mcrypt_module_close(td);
+    //}
     pthread_mutex_destroy(&lock);
     pthread_mutex_destroy(&locksend);
     exit(0);
