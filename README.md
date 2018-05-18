@@ -16,13 +16,13 @@ Server for handling of Quantum keys pool.
 
 ## Testing
 
-1) Run two instances of [blockhain] (https://github.com/BAlchemyLab/bal) nodes at 5000 and 5001 ports. For example:
+1) Run two instances of [blockhain](https://github.com/BAlchemyLab/bal) nodes at 5000 and 5001 ports. For example:
 ```
 pipenv run python blockchain.py -p 5000 -d quant.db -v quant
 pipenv run python blockchain.py -p 5001 -d quant.db -v quant
 ```
 
-2) Run instance of [keyworker] (https://github.com/BAlchemyLab/qnet/tree/master/keyworker) on port 55554:
+2) Run instance of [keyworker](https://github.com/BAlchemyLab/qnet/tree/master/keyworker) on port 55554:
 ```
 ./keyworker -p 55554
 ```
