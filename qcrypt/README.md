@@ -1,5 +1,8 @@
 Build:
 =======
+
+`sudo yum install gcc make libmicrohttpd-devel libconfig-devel`
+
 `make qcrypt`
 
 Requirements:
