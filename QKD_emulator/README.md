@@ -4,7 +4,9 @@ Software emulator for KQD hardware. This utility generate of random key and send
 
 ## Building
 
-make qkdemu
+`sudo yum install gcc-c++ make`
+
+`make qkdemu`
 
 ## Running
 
