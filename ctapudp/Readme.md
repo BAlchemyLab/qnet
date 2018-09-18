@@ -2,7 +2,9 @@ UDP-версия
 ======
 
 
-Для сборки нужны пакеты openssl-devel, libcurl-devel, libmcrypt-devel
+Для сборки нужны пакеты openssl-devel, libcurl-devel
+
+`yum install gcc make openssl-devel libcurl-devel`
 
 
 Сборка
