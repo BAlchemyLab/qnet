@@ -1,3 +1,5 @@
+**THIS REPOSITORY CLOSED! ALL DEVELOPMENT MOVED TO https://balchemylab.gitlab.io**
+
 # QNet
 
 Quantum Network related tools.
